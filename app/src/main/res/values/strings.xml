@@ -1,0 +1,41 @@
+<resources>
+    <string name="app_name">AndroidERestaurant</string>
+    <string name="title_activity_categorie">CategorieActivity</string>
+
+    <!-- Définir les titres des plats pour chaque catégorie -->
+    <string-array name="entrees">
+        <item>Tartare saumon mariné et avocat</item>
+        <item>Salade de chevre chaud</item>
+        <item>Salade Tomate Mozarella et sauce Balsamique</item>
+    </string-array>
+
+    <string-array name="entreesDétails">
+        <item>Dés de saumon mariné dans de la sauce soja salé et des dés d avocats</item>
+        <item>Salade de mache, tomate cerise, lardon, champignon frais, tranche de pain grillé avec une tranche de chevre et miel</item>
+        <item>Rondelle de tomate et de mozarella avec sauce de Balzamique</item>
+    </string-array>
+
+    <string-array name="plats">
+        <item>Lasagne</item>
+        <item>Blanquette de veau avec riz</item>
+        <item>Pate Carbonara</item>
+    </string-array>
+
+    <string-array name="platsDétails">
+        <item>pate à lasagne, sauce bolognaise, sauce béchamel et gratiné d émentale</item>
+        <item>veau, champignon frais, carotte, oignon, sauce à base d eau, de cube de bouillon, vin et creme fraiche </item>
+        <item>pate, sauce à base de creme fraiche, lardon, oignon, jaune d oeuf</item>
+    </string-array>
+
+    <string-array name="desserts">
+        <item>Moelleux au chocolat</item>
+        <item>Tiramisu Speculos</item>
+        <item>Salade de fruits de saison</item>
+    </string-array>
+    <string-array name="dessertsDetails">
+        <item>gateau au chocolat avec une boule de glace à la vanille</item>
+        <item></item>
+        <item>variété de fruit de saison</item>
+    </string-array>
+
+</resources>
