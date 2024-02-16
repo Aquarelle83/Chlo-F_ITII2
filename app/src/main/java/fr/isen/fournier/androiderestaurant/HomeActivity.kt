@@ -2,13 +2,16 @@
 
 package fr.isen.fournier.androiderestaurant
 
+
+//import android.widget.Toast
+
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -21,25 +24,27 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-//import android.widget.Toast
 import fr.isen.fournier.androiderestaurant.ui.theme.AndroidERestaurantTheme
+
 
 
 class HomeActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
         setContent {
             AndroidERestaurantTheme {
                 // A surface container using the 'background' color from the theme
@@ -54,6 +59,7 @@ class HomeActivity : ComponentActivity() {
     fun showToast(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
+
     fun startCategoryActivity(category: String) {
         val intent = Intent(this,  CategorieActivity::class.java).apply {
             putExtra("category", category) // Passer la catégorie sélectionnée à l'activité suivante
@@ -69,34 +75,53 @@ class HomeActivity : ComponentActivity() {
 
 @Composable
 fun HomeScreen(onMenuClick: (String) -> Unit) {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp)
-    ) {
-        Greeting("AndroidERestaurant")
-        Spacer(modifier = Modifier.height(16.dp))
-        CategoryButton("Entrée", Color(0xFF64B5F6)){
-            onMenuClick("Entrée")
-        }
-        Spacer(modifier = Modifier.height(8.dp))
-        CategoryButton("Plats", Color(0xFF64B5F6)) {
-            // Action lorsque le bouton Plats est cliqué
-            onMenuClick("Plats")
-        }
-        Spacer(modifier = Modifier.height(8.dp))
-        CategoryButton("Dessert", Color(0xFF64B5F6)) {
-            // Action lorsque le bouton Dessert est cliqué
-            onMenuClick("Dessert")
+    Box(modifier = Modifier.fillMaxSize()) {
+        // Ajoutez l'image de fond avec un dégradé
+        Image(
+            painter = painterResource(id = R.drawable.fde_android3),
+            contentDescription = null, // Indiquez une description si nécessaire
+            modifier = Modifier.fillMaxSize(),
+            contentScale = ContentScale.FillBounds
+        )
+
+        // Ajoutez le contenu de votre page au-dessus de l'image de fond
+        Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+            Column(
+                modifier = Modifier.padding(16.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Greeting("AndroidERestaurant")
+                Spacer(Modifier.height(18.dp))
+
+                CategoryButton("Entrée", Color(R.color.sky_blue)) {
+                    onMenuClick("Entrée")
+                }
+                Spacer(modifier = Modifier.height(8.dp))
+                CategoryButton("Plats", Color(R.color.sky_blue)) {
+                    onMenuClick("Plats")
+                }
+                Spacer(modifier = Modifier.height(8.dp))
+                CategoryButton("Dessert", Color(R.color.sky_blue)) {
+                    onMenuClick("Dessert")
+                }
+            }
         }
     }
 }
 
+
 @Composable
 fun CategoryButton(category: String, color: Color, onClick: () -> Unit) {
+    val skyBlueColor = colorResource(id = R.color.sky_blue)
+
+    val buttonColors = ButtonDefaults.buttonColors(
+        //backgroundColor = Color.Transparent, // Utilisé pour spécifier une couleur par défaut
+        contentColor = skyBlueColor // Couleur du contenu du bouton
+    )
+
     Button(
         onClick = onClick,
-        //colors = ButtonDefaults.buttonColors(backgroundColor = color),
+        colors = buttonColors, // Utilisez l'objet ButtonColors configuré
         shape = RoundedCornerShape(8.dp)
     ) {
         Row(
@@ -104,22 +129,19 @@ fun CategoryButton(category: String, color: Color, onClick: () -> Unit) {
         ) {
             Box(
                 modifier = Modifier
-                    .size(48.dp)
+                    .size(28.dp)
                     .background(Color.White, shape = CircleShape)
-            ) {
-                // You can add an icon or text here if needed
-            }
+            )
             Spacer(modifier = Modifier.width(16.dp))
             Text(
                 text = category,
                 color = Color.White,
-                fontSize = 20.sp,
+                fontSize = 38.sp,
                 fontWeight = FontWeight.Bold
             )
         }
     }
 }
-
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
@@ -127,7 +149,8 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
         text = name,
         modifier = modifier,
         fontSize = 24.sp,
-        fontWeight = FontWeight.Bold
+        fontWeight = FontWeight.Bold,
+        color = Color.White
     )
 }
 
