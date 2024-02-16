@@ -141,6 +141,8 @@ fun CategoryButton(category: String, color: Color, onClick: () -> Unit) {
             )
         }
     }
+
+
 }
 
 @Composable
